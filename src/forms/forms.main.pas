@@ -18,11 +18,14 @@ type
 
 { TfrmMain }
   TfrmMain = class(TForm)
+    actThreadSingleMultipleInstances: TAction;
     actThreadSingle: TAction;
     alMain: TActionList;
     btnThreadSingle: TButton;
     actFileExit: TFileExit;
+    btnThreadSingleMultipleInstances: TButton;
     gbThreadSingle: TGroupBox;
+    gbSingleThreadMultipleInstances: TGroupBox;
     mnuFile: TMenuItem;
     mnuFileExit: TMenuItem;
     mnuThread: TMenuItem;
@@ -31,6 +34,7 @@ type
     memLog: TMemo;
     sbMain: TStatusBar;
     stThreadSingle: TStaticText;
+    stThreadSingleMultipleInstances: TStaticText;
 
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -38,6 +42,7 @@ type
     procedure DisplayHint(Sender: TObject);
 
     procedure actThreadSingleExecute(Sender: TObject);
+    procedure actThreadSingleMultipleInstancesExecute(Sender: TObject);
   private
     fThreadSingle: TThreadSingle;
 
@@ -89,8 +94,22 @@ end;
 
 procedure TfrmMain.actThreadSingleExecute(Sender: TObject);
 begin
-  fThreadSingle.Start;
   actThreadSingle.Enabled:= False;
+  fThreadSingle.Start;
+end;
+
+procedure TfrmMain.actThreadSingleMultipleInstancesExecute(Sender: TObject);
+var
+  index: Integer;
+  singleThreadArray: array [1..3] of TThreadSingle;
+begin
+  actThreadSingleMultipleInstances.Enabled:= False;
+  for index:= 1 to 3 do
+  begin
+    singleThreadArray[index]:= TThreadSingle.Create(True);
+    singleThreadArray[index].OnShowStatus:= @ThreadSingleShowStatus;
+    singleThreadArray[index].Start;
+  end;
 end;
 
 end.

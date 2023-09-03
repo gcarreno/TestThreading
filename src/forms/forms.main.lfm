@@ -11,6 +11,43 @@ object frmMain: TfrmMain
   Menu = mnuMain
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  object gbSingleThreadMultipleInstances: TGroupBox
+    Left = 0
+    Height = 109
+    Top = 109
+    Width = 800
+    Align = alTop
+    AutoSize = True
+    Caption = ' Single Thread, Multiple Instances '
+    ClientHeight = 91
+    ClientWidth = 798
+    TabOrder = 3
+    object btnThreadSingleMultipleInstances: TButton
+      Left = 4
+      Height = 30
+      Top = 4
+      Width = 106
+      Action = actThreadSingleMultipleInstances
+      Align = alLeft
+      AutoSize = True
+      BorderSpacing.Left = 4
+      BorderSpacing.Top = 4
+      Constraints.MaxHeight = 30
+      TabOrder = 0
+    end
+    object stThreadSingleMultipleInstances: TStaticText
+      Left = 114
+      Height = 87
+      Top = 4
+      Width = 635
+      Align = alLeft
+      AutoSize = True
+      BorderSpacing.Left = 4
+      BorderSpacing.Top = 4
+      Caption = 'The example above isn''t of much use if we just run a single instance.'#10#10'In this example we create multiple instances of the same thread and we start them concurrently.'#10#10'This is, also, a single shot use because we set the thread''s `FreeOnTerminate` property to True.'
+      TabOrder = 1
+    end
+  end
   object sbMain: TStatusBar
     Left = 0
     Height = 19
@@ -25,7 +62,7 @@ object frmMain: TfrmMain
     Width = 800
     Align = alTop
     AutoSize = True
-    Caption = ' Single Thread '
+    Caption = ' Single Thread, Single Instance '
     ClientHeight = 91
     ClientWidth = 798
     TabOrder = 0
@@ -46,19 +83,19 @@ object frmMain: TfrmMain
       Left = 114
       Height = 87
       Top = 4
-      Width = 547
+      Width = 572
       Align = alLeft
       AutoSize = True
       BorderSpacing.Left = 4
       BorderSpacing.Top = 4
-      Caption = 'This exemplifies the most basic use of a thread.'#10#10'It declares an event to hook into the main form.'#10#10'This is a single shot because we set the thread''s FreeOnTerminate property to True.'
+      Caption = 'This exemplifies the most basic use of a thread.'#10#10'It declares an event to hook into the main form.'#10#10'This is a single shot use because we set the thread''s FreeOnTerminate property to True.'
       TabOrder = 1
     end
   end
   object memLog: TMemo
     Left = 4
-    Height = 364
-    Top = 113
+    Height = 255
+    Top = 222
     Width = 792
     Align = alClient
     BorderSpacing.Around = 4
@@ -74,9 +111,15 @@ object frmMain: TfrmMain
     end
     object actThreadSingle: TAction
       Category = 'Thread'
-      Caption = '&Single Thread'
+      Caption = 'Single Thread'
       Hint = 'Single Therad|Executes the Single Thread code'
       OnExecute = actThreadSingleExecute
+    end
+    object actThreadSingleMultipleInstances: TAction
+      Category = 'Thread'
+      Caption = 'Single Thread'
+      Hint = 'Single Therad|Executes the Single Thread, Multiple Instances code'
+      OnExecute = actThreadSingleMultipleInstancesExecute
     end
   end
   object mnuMain: TMainMenu

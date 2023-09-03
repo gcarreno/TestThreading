@@ -1,0 +1,98 @@
+object frmMain: TfrmMain
+  Left = 388
+  Height = 500
+  Top = 250
+  Width = 800
+  Caption = 'frmMain'
+  ClientHeight = 500
+  ClientWidth = 800
+  Constraints.MinHeight = 500
+  Constraints.MinWidth = 800
+  Menu = mnuMain
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  object sbMain: TStatusBar
+    Left = 0
+    Height = 19
+    Top = 481
+    Width = 800
+    Panels = <>
+  end
+  object gbThreadSingle: TGroupBox
+    Left = 0
+    Height = 109
+    Top = 0
+    Width = 800
+    Align = alTop
+    AutoSize = True
+    Caption = ' Single Thread '
+    ClientHeight = 91
+    ClientWidth = 798
+    TabOrder = 0
+    object btnThreadSingle: TButton
+      Left = 4
+      Height = 30
+      Top = 4
+      Width = 106
+      Action = actThreadSingle
+      Align = alLeft
+      AutoSize = True
+      BorderSpacing.Left = 4
+      BorderSpacing.Top = 4
+      Constraints.MaxHeight = 30
+      TabOrder = 0
+    end
+    object stThreadSingle: TStaticText
+      Left = 114
+      Height = 87
+      Top = 4
+      Width = 547
+      Align = alLeft
+      AutoSize = True
+      BorderSpacing.Left = 4
+      BorderSpacing.Top = 4
+      Caption = 'This exemplifies the most basic use of a thread.'#10#10'It declares an event to hook into the main form.'#10#10'This is a single shot because we set the thread''s FreeOnTerminate property to True.'
+      TabOrder = 1
+    end
+  end
+  object memLog: TMemo
+    Left = 4
+    Height = 364
+    Top = 113
+    Width = 792
+    Align = alClient
+    BorderSpacing.Around = 4
+    TabOrder = 1
+  end
+  object alMain: TActionList
+    Left = 688
+    Top = 424
+    object actFileExit: TFileExit
+      Category = 'File'
+      Caption = 'E&xit'
+      Hint = 'Exit'
+    end
+    object actThreadSingle: TAction
+      Category = 'Thread'
+      Caption = '&Single Thread'
+      Hint = 'Single Therad|Executes the Single Thread code'
+      OnExecute = actThreadSingleExecute
+    end
+  end
+  object mnuMain: TMainMenu
+    Left = 592
+    Top = 424
+    object mnuFile: TMenuItem
+      Caption = '&File'
+      object mnuFileExit: TMenuItem
+        Action = actFileExit
+      end
+    end
+    object mnuThread: TMenuItem
+      Caption = '&Thread'
+      object mnuThreadSingle: TMenuItem
+        Action = actThreadSingle
+      end
+    end
+  end
+end

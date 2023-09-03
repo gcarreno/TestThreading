@@ -1,0 +1,73 @@
+name: Lazarus Main Workflow
+
+permissions:
+  contents: write
+
+on:
+
+  push:
+    branches: [ main ]
+    tags: [ "*" ]
+    paths-ignore: [ "README.md", "CHANGELOG.md", "cliff.toml" ]
+
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+    name: 01 - Build Application
+    uses: gcarreno/re-usable-workflows/.github/workflows/build.lazarus.yml@main
+    with:
+      config: '{
+          "app-name": "TestThreading",
+          "lpi-path": "src",
+          "bin-path": "bin",
+          "build-mode": "Release",
+          "matrix": {
+            "os": [
+              "ubuntu-latest",
+              "windows-latest",
+              "macos-latest"
+            ],
+            "include":[
+              {
+                "os": "ubuntu-latest",
+                "triplet": "x86_64-linux"
+              },
+              {
+                "os": "windows-latest",
+                "triplet": "x86_64-win64"
+              },
+              {
+                "os": "macos-latest",
+                "triplet": "x86_64-darwin"
+              }
+            ],
+            "lazarus-versions": [
+              "stable"
+            ]
+          }
+        }'
+
+    strategy:
+      fail-fast: true
+
+  release:
+    if: contains(github.ref_type, 'tag')
+
+    name: 02 - Create GitHub Release
+    uses: gcarreno/re-usable-workflows/.github/workflows/release.lazarus.yml@main
+    needs: build
+    with:
+      config: '{
+          "app-name": "TestThreading",
+          "tag": "${{ github.ref_name }}",
+          "cliff-cfg": "cliff.toml",
+          "win": "${{ needs.build.outputs.win-artefact-path }}",
+          "lin": "${{ needs.build.outputs.lin-artefact-path }}",
+          "osx": "${{ needs.build.outputs.osx-artefact-path }}"
+        }'
+
+    strategy:
+      fail-fast: true

@@ -1,5 +1,5 @@
 # Test Threading
-[![Build Status](https://github.com/gcarreno/TestThreading/workflows/actions/main.lazarus.yml/badge.svg?branch=main)](https://github.com/gcarreno/TestThreading/actions)
+[![Build Status](https://github.com/gcarreno/TestThreading/actions/workflows/main.lazarus.yml/badge.svg?branch=main)](https://github.com/gcarreno/TestThreading/actions)
 [![Supports Windows](https://img.shields.io/badge/support-Windows-blue?logo=Windows)](https://github.com/gcarreno/TestThreading/releases/latest)
 [![Supports Linux](https://img.shields.io/badge/support-Linux-yellow?logo=Linux)](https://github.com/gcarreno/TestThreading/releases/latest)
 [![Supports macOS](https://img.shields.io/badge/support-macOS-black?logo=macOS)](https://github.com/gcarreno/TestThreading/releases/latest)

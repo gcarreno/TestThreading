@@ -26,6 +26,7 @@ type
     btnThreadSingleMultipleInstances: TButton;
     gbThreadSingle: TGroupBox;
     gbSingleThreadMultipleInstances: TGroupBox;
+    mnuThreadSingleMultipleInstances: TMenuItem;
     mnuFile: TMenuItem;
     mnuFileExit: TMenuItem;
     mnuThread: TMenuItem;

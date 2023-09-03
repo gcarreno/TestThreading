@@ -1,4 +1,4 @@
-name: Lazarus Main Workflow
+name: Test Threading
 
 permissions:
   contents: write
